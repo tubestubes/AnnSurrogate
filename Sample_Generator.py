@@ -1,12 +1,12 @@
 """
-Running this code generates a random sampling from X1-7
-Generates labels from the function (fn)
+Running this code generates a random sampling from X1..7
+X1..7 are Normal RVs, with means m1..7 and s1..7
+Generates labels from the function to be modelled
 Creates training and test sets
 * Exports:
     dtrain.pickle and dtest.pickle
-    picked out -> can pickled in to other files
 * Requires:
-    fn.py in this directory
+    fn.py
 """
 
 def generate():
@@ -15,7 +15,7 @@ def generate():
     import pandas as pd
     import pickle
     import seaborn as sns
-    from fn import eqn  # requires fn.py in this dir
+    from fn import eqn 
 
     # Define means and std of all 7 Normal RVs
     m1, s1 = 350, 35
@@ -41,7 +41,7 @@ def generate():
     for i in range(0, ss):
         y = eqn(x1[i], x2[i], x3[i], x4[i], x5[i], x6[i], x7[i])
         l.append(y)
-    #print(l)  # quick test
+    #print(l)	# quick test
 
     # create dataset as pd dataframe
     ds = pd.DataFrame(l, columns = ['label'])
@@ -66,7 +66,8 @@ def generate():
     with open('dtest.pickle', 'wb') as file:
         pickle.dump(d_test, file)
 
-    sns.pairplot(d_train, diag_kind="kde")
+    # Test Plot
+    #sns.pairplot(d_train, diag_kind="kde")
 
 
 if __name__ == '__main__':
